@@ -11,32 +11,81 @@ class MyAppss extends StatelessWidget {
       home: Scaffold(
         backgroundColor: Colors.white,
         body: Center(
-          child: Stack(
-            children: [
-              // Border Layer (Slightly Larger)
-              ClipPath(
-                clipper: TicketClipper(),
-                child: Container(
-                  width: double.infinity, // Full width
-                  height: 104, // 2px larger for border effect
-                  color: Colors.black, // Border color
-                ),
-              ),
-              // Inner Ticket Layer
-              Positioned(
-                left: 2,
-                top: 2,
-                right: 2, // Ensuring full width with border
-                child: ClipPath(
+          child: Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 15),
+            child: Stack(
+              children: [
+                // Border Layer (Slightly Larger)
+                ClipPath(
                   clipper: TicketClipper(),
                   child: Container(
-                    width: double.infinity,
-                    height: 100, // Actual ticket height
-                    color: Colors.white, // Inner ticket color
+                    width: double.infinity, // Full width
+                    height: 104, // 2px larger for border effect
+                    color: Colors.black, // Border color
                   ),
                 ),
-              ),
-            ],
+                // Inner Ticket Layer
+                Positioned(
+                  left: 2,
+                  top: 2,
+                  right: 2, // Ensuring full width with border
+                  child: ClipPath(
+                    clipper: TicketClipper(),
+                    child: Container(
+                      width: double.infinity,
+                      height: 100, // Actual ticket height
+                      color: Colors.white,
+                      child: Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: 10,vertical: 5),
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                Text("Suit alteration",style: TextStyle(fontSize: 23),),
+                                Container(
+                                  child: Row(
+                                    children: [
+                                      Text("3 days left",style: TextStyle(fontSize: 12,color: Colors.pinkAccent.shade200),),
+                                      Container(
+                                        height: 40,
+                                        color: Colors.teal,
+                                        child: Text("4.21.20",style: TextStyle(fontSize: 13),),
+                                      )
+                                    ],
+                                  ),
+                                )
+                              ],
+                            ),
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                Column(
+                                  children: [
+                                    Row(
+                                      children: [
+                                        Icon(Icons.shopping_bag,color: Colors.blue,),
+                                        Text("For User 2",style: TextStyle(fontSize: 20,),)
+                                      ],
+                                    ),
+                                    Text("description",style: TextStyle(),)
+                                  ],
+                                ),
+                                Container(
+                                  color: Colors.deepPurple,
+                                  child: Text("View Details"),
+                                )
+                              ],
+                            )
+                          ],
+                        ),
+                      ),
+                    ),
+                  ),
+                ),
+              ],
+            ),
           ),
         ),
       ),
