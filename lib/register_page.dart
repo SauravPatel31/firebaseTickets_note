@@ -1,7 +1,7 @@
-import 'package:firebase_auth/firebase_auth.dart';
-import 'package:firebase_note/home_page.dart';
-import 'package:firebase_note/login_page.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+
+import 'auth_provider.dart';
 
 class RegisterPage extends StatefulWidget {
   @override
@@ -17,19 +17,18 @@ class _RegisterPageState extends State<RegisterPage> {
 
   TextEditingController passController = TextEditingController();
 
-  registerUser()async{
+  /*registerUser()async{
     final userRegister = FirebaseAuth.instance;
 
     userRegister.createUserWithEmailAndPassword(email: emailController.text, password: passController.text).then((value) {
       Navigator.push(context, MaterialPageRoute(builder: (context) => LoginPage(),));
       ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text("Register Done",style: TextStyle(color: Colors.white),),backgroundColor: Colors.green));
-      
+
     },).onError((error, stackTrace) {
       ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text("$error",style: TextStyle(color: Colors.white),),backgroundColor: Colors.red));
+      },);
 
-    },);
-  
-  }
+  }*/
 
   @override
   Widget build(BuildContext context) {
@@ -64,9 +63,11 @@ class _RegisterPageState extends State<RegisterPage> {
             ),
           ),
           ElevatedButton(onPressed: (){
-          registerUser();
+          Provider.of<Auth>(context,listen:false).userRegister(fName: firstnameController.text, lName: lastnameController.text, email: emailController.text, pass: passController.text,context: context);
 
-          }, child: Text("Register"))
+          }, child: Consumer(builder: (context, value, child) {
+            return context.read<Auth>().isLoading?Center(child: CircularProgressIndicator(),):Text("Register");
+          },))
         ],
       ),
     );

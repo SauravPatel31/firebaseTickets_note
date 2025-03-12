@@ -1,14 +1,18 @@
 import 'package:firebase_core/firebase_core.dart';
+import 'package:firebase_note/auth_provider.dart';
 import 'package:firebase_note/firebase_options.dart';
 import 'package:firebase_note/login_page.dart';
-import 'package:firebase_note/register_page.dart';
-import 'package:firebase_note/tickets.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 void main() async{
   WidgetsFlutterBinding.ensureInitialized();
  await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
-  runApp(MyApp());
+  runApp(MultiProvider(
+      providers: [
+        ChangeNotifierProvider(create: (context) => Auth(),)
+      ],
+      child: MyApp()));
 }
 
 class MyApp extends StatelessWidget {
@@ -19,7 +23,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
 
-      home: MyAppss(),
+      home: LoginPage(),
     );
   }
 }

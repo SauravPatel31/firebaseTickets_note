@@ -1,11 +1,16 @@
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:firebase_note/home_page.dart';
+import 'package:firebase_note/app_const.dart';
+import 'package:firebase_note/appoinment.dart';
 import 'package:firebase_note/register_page.dart';
 import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class LoginPage extends StatelessWidget {
+  LoginPage({super.key});
   TextEditingController emailController = TextEditingController();
   TextEditingController passController = TextEditingController();
+
+
 
   @override
   Widget build(BuildContext context) {
@@ -38,8 +43,10 @@ class LoginPage extends StatelessWidget {
               child: Text("Forget password")),
           ElevatedButton(onPressed: (){
             var userLogin = FirebaseAuth.instance;
-            userLogin.signInWithEmailAndPassword(email: emailController.text, password: passController.text).then((value) {
-              Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => HomePage(),));
+            userLogin.signInWithEmailAndPassword(email: emailController.text, password: passController.text).then((value) async{
+              SharedPreferences pref =await SharedPreferences.getInstance();
+              pref.setString(AppConst.USER_ID_KEY, userLogin.currentUser!.uid);
+              Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => Appointment(),));
             },).onError((error, stackTrace) {
               ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(error.toString(),style: TextStyle(color: Colors.white),)));
             },);
