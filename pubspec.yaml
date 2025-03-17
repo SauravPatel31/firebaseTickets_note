@@ -41,6 +41,9 @@ dependencies:
   shared_preferences:
   intl:
   get:
+  skeletonizer:
+  shimmer:
+  flutter_local_notifications:
 
 dev_dependencies:
   flutter_test:
