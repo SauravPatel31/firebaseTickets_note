@@ -1,5 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_note/app_const.dart';
+import 'package:firebase_note/special_in_page.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:get/get.dart';
@@ -217,6 +218,7 @@ class _AppointmentState extends State<Appointment> {
                   "reminds":isReadme,
                   "category":selectedCategory
                 }).then((value) {
+                  Navigator.push(context, MaterialPageRoute(builder: (context) => SpecialPage(),));
                  ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text("Data is add",style: TextStyle(color: Colors.white),),backgroundColor: Colors.green,));
                 },).onError((error, stackTrace) {
                  ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text("$error",style: TextStyle(color: Colors.white),),backgroundColor: Colors.red,));

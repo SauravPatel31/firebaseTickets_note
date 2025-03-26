@@ -3,6 +3,7 @@ import 'package:firebase_note/a.dart';
 import 'package:firebase_note/auth_provider.dart';
 import 'package:firebase_note/delivery_add_page.dart';
 import 'package:firebase_note/firebase_options.dart';
+import 'package:firebase_note/home_page.dart';
 import 'package:firebase_note/login_page.dart';
 import 'package:firebase_note/notify.dart';
 import 'package:flutter/material.dart';
@@ -26,7 +27,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
 
-      home: AbcPage(),
+      home: LoginPage(),
     );
   }
 }

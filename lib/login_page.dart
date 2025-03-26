@@ -2,9 +2,12 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_note/app_const.dart';
 import 'package:firebase_note/appoinment.dart';
 import 'package:firebase_note/delivery_add_page.dart';
+import 'package:firebase_note/home_page.dart';
 import 'package:firebase_note/register_page.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+
+import 'aa.dart';
 
 class LoginPage extends StatelessWidget {
   LoginPage({super.key});
@@ -47,7 +50,7 @@ class LoginPage extends StatelessWidget {
             userLogin.signInWithEmailAndPassword(email: emailController.text, password: passController.text).then((value) async{
               SharedPreferences pref =await SharedPreferences.getInstance();
               pref.setString(AppConst.USER_ID_KEY, userLogin.currentUser!.uid);
-              Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => DeliveryAddPage(),));
+              Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => HomesPage(),));
             },).onError((error, stackTrace) {
               ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(error.toString(),style: TextStyle(color: Colors.white),)));
             },);

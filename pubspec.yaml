@@ -44,6 +44,8 @@ dependencies:
   skeletonizer:
   shimmer:
   flutter_local_notifications:
+  workmanager:
+  timezone:
 
 dev_dependencies:
   flutter_test:
